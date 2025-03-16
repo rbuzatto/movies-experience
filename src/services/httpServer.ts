@@ -1,4 +1,4 @@
-import { getCookie } from 'cookies-next/server'
+import { cookies } from 'next/headers'
 
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -17,7 +17,8 @@ async function request<T>(
   headers: Record<string, string> = {},
 ): Promise<T> {
   try {
-    const token = getCookie('token')
+    const cookieStore = await cookies()
+    const token = cookieStore.get('token')?.value
     if (token) {
       headers['Authorization'] = `Bearer ${token}`
     }
