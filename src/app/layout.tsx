@@ -12,8 +12,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  // await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/token`, { cache: 'no-store' })
-
   return (
     <html lang="en">
       <body>
