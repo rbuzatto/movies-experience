@@ -19,6 +19,7 @@ export async function middleware(request: NextRequest) {
       name: 'token',
       value: newToken,
       httpOnly: false,
+      maxAge: 60 * 60 * 24,
     })
 
     return NextResponse.rewrite(request.nextUrl, response)
