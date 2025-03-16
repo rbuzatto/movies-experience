@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios'
-import { getCookie, getCookies } from 'cookies-next'
+import { getCookie } from 'cookies-next'
 
 const defaultHeaders = {
   'Content-Type': 'application/json',
@@ -16,12 +16,9 @@ let token: string | undefined = undefined
 
 instance.interceptors.request.use(
   async config => {
-    console.log('instance being called')
-    console.log('token', await getCookies())
     if (!token) {
       token = await getCookie('token')
     }
-    console.log('here is token', token)
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -40,7 +37,6 @@ export const formatUrl = (url: string, params?: string[]): string => {
 
 export async function getData<T>(url: string, params?: string[], headers?: unknown): Promise<T> {
   try {
-    console.log('📡 Calling GET:', url)
     const response = await instance.get<T>(formatUrl(url, params), { headers })
     return response.data
   } catch (error) {
