@@ -4,8 +4,8 @@ import Link from 'next/link'
 
 type MovieProps = {
   title: string
-  posterUrl: string
-  rating: number
+  posterUrl?: string
+  rating?: number
   id: string
 }
 
