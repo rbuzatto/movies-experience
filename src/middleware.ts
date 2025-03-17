@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { getData } from './services/httpServer'
+import { MOVIES } from './endpoints'
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value
@@ -8,7 +9,7 @@ export async function middleware(request: NextRequest) {
   if (token) return NextResponse.next()
 
   try {
-    const resp = await getData<{ token: string }>('/auth/token')
+    const resp = await getData<{ token: string }>(MOVIES.AUTH_TOKEN)
     const newToken = resp.token
     if (!newToken) {
       return NextResponse.next()

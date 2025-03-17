@@ -1,3 +1,4 @@
+import { MOVIES } from '@/endpoints'
 import { getData } from '@/services/httpClient'
 import { useQuery } from '@tanstack/react-query'
 
@@ -22,6 +23,6 @@ type GenreData = {
 export const useGetGenres = () => {
   return useQuery<GenreData>({
     queryKey: ['genre', 'movies'],
-    queryFn: () => getData('/genres/movies'),
+    queryFn: () => getData(MOVIES.GET_GENRES),
   })
 }

@@ -1,3 +1,4 @@
+import { MOVIES } from '@/endpoints'
 import { getData } from '@/services/httpServer'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -31,7 +32,7 @@ export default async function MoviePage({ params }: { params: Promise<{ id: stri
     ratingValue,
     writers,
     genres,
-  } = await getData<MovieData>(`/movies/${id}`)
+  } = await getData<MovieData>(MOVIES.GET_MOVIE, [id])
   const getPictureTime = duration.split('T')[1].split('H')
   const hours = getPictureTime[0]
   const minutes = getPictureTime[1].split('M')[0]

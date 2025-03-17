@@ -1,3 +1,4 @@
+import { MOVIES } from '@/endpoints'
 import { getData } from '@/services/httpClient'
 import { useQuery } from '@tanstack/react-query'
 
@@ -22,11 +23,6 @@ type UseGetMoviesProps = {
 export const useGetMovies = ({ search, genre, currentPage }: UseGetMoviesProps) => {
   return useQuery({
     queryKey: ['movies', search, genre, currentPage],
-    queryFn: () =>
-      getData<MovieQuery>('/movies?search={0}&genre={1}&page={2}', [
-        search,
-        genre,
-        currentPage.toString(),
-      ]),
+    queryFn: () => getData<MovieQuery>(MOVIES.GET_MOVIES, [search, genre, currentPage.toString()]),
   })
 }
