@@ -16,6 +16,10 @@ export const MoviesList = ({ search, genre, currentPage }: MoviesListProps) => {
     return <Loading />
   }
 
+  if (!movies) {
+    return <h2>No movies found for this search</h2>
+  }
+
   return (
     <ul className="flex flex-col gap-4">
       {movies?.map(movie => (
