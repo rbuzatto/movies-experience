@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is Movies Experience, where you can find all your favorites movies
 
 ## Getting Started
 
-First, run the development server:
+Installing the dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+set `NEXT_PUBLIC_BASE_URL` variable at `.env`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Run the development server:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm dev
+```
 
-## Learn More
+This project is powered by the following stack:
 
-To learn more about Next.js, take a look at the following resources:
+- [Typescript](https://www.typescriptlang.org/)
+- [React](https://react.dev/)
+- [Next.JS](https://nextjs.org/)
+- [@tanstack/react-query](https://tanstack.com/query/latest)
+- [tailwind](https://tailwindcss.com/)
+- [shadcn](https://ui.shadcn.com/)
+- [vitest](https://vitest.dev/)
+- [eslint](https://eslint.org/)
+- [prettier](https://prettier.io/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### About Queries
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+I chose react-query for client side queries, it handles great perfoming queries and caching. The searching functionality I let the frontend perform the query instead of reloading the page. For rendering data for a specific movie I let the backend do the work.
 
-## Deploy on Vercel
+### Authorization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I created a middleware to retrieve the auth token, and set in the cookies. This way the frontend would receive the token from the server, instead of fetching itself. I feel this is the best approach, where the backend controls specific sensitive data.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Linting
+
+Although I picked eslint + prettier, which is standard, I considered using Biome.js, which is far more performant. Since I'm not familiar yet I went with eslint + prettier.
+
+### Opted-out
+
+I considered if some form library should be used along with some validator, like react-hook-form and zod. It felt really unnecessary here for an input search.
+
+### Improvements
+
+I would consider adding other filters, like movies per page, allow picking other views for rendering movies (e.g. grid), and I would add throttle behavior for the input.
