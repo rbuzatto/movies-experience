@@ -13,17 +13,6 @@ type MovieQuery = {
   totalPages: number
 }
 
-type Genre = {
-  id: string
-  title: string
-  movies: Pick<Movie, 'id'>[]
-}
-
-type GenreData = {
-  data: Genre[]
-  totalPages: number
-}
-
 type UseGetMoviesProps = {
   search: string
   genre: string
