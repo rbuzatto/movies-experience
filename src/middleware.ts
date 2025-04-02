@@ -24,7 +24,7 @@ export async function middleware(request: NextRequest) {
     })
 
     return NextResponse.rewrite(request.nextUrl, response)
-  } catch (error) {
+  } catch {
     return NextResponse.next()
   }
 }
